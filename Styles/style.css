@@ -1,9 +1,14 @@
+@import url('http://fonts.cdnfonts.com/css/gotham');
+
+
 *{
     margin: 0;
     padding: 0;
    background-color: black;
     overflow: hidden;
     color: white;
+    font-family: 'Gotham', sans-serif;
+
 }
 
 
@@ -24,7 +29,7 @@
     background-image: url("../Images/Abstract_Shape1.png"); 
     background-size:contain;
     background-repeat: no-repeat;
-   z-index: 0;
+   z-index: 1;
   }
 
   
