@@ -7,13 +7,16 @@ class ClandarStart{
      
    }
 
-   
+   get mnt(){
+    return this.month;
+   }
 
 
     init(){
       this.rows.forEach((item)=>{
             item.textContent='';
             item.style.color='white';
+          
         });
 
         var dt = new Date(2023,6);  
@@ -25,22 +28,17 @@ class ClandarStart{
         this.rows.forEach((item)=>{
             i--;   
             if(days>dt.getDate()) return null;
-        if(i<=0){
+    
+            if(i<=0){
              item.textContent= dt.getDate();
-               if(days>dt.getDate()) return null;
+             item.style.cursor = "pointer";
              dt.setDate(dt.getDate() + 1);
                  days++;
-    
-          
            }
       
         });
 
     }
-
-
-
-
 
 
 }

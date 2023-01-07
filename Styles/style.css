@@ -4,18 +4,25 @@
 *{
     margin: 0;
     padding: 0;
-   background-color: black;
+  
     overflow: hidden;
     color: white;
     font-family: 'Gotham', sans-serif;
 
 }
 
+body{
+     background-color: black;
+}
+
 
 .wrapper{
     display: flex;
     justify-content: center;
-    
+    width: 100%;
+    height:100px;
+   
+
 }
 
 
@@ -29,7 +36,7 @@
     background-image: url("../Images/Abstract_Shape1.png"); 
     background-size:contain;
     background-repeat: no-repeat;
-   z-index: 1;
+    
   }
 
   
@@ -48,9 +55,15 @@
 
 
 .wrapper_calendar{
-    margin-top: 5%;
-    z-index: 1;
+    position: absolute;
+    top: 12%;
+
+    
 }
+
+
+
+
 
 .colortext {
   color: darkred;
@@ -75,7 +88,7 @@ td{
     width: 10%;
     background-color: rgba(28, 28, 30, 1);
     height: 100px;
-    
+  
 }
 
 .weekand{
@@ -86,7 +99,83 @@ td{
 
 
 
+.modal_window{
+    position: fixed;
+    z-index: 2;
+    display: none;
+    background-color: rgba(121, 118, 118, 0.4);
+    width: 100%;
+  height: 100%;
+    overflow: auto; 
+}
 
+
+.modal_content {
+    background-color: #fefefe;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid rgb(255, 255, 255);
+    width: 35%;
+    background-color: white;
+    
+
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+.header h2{
+    text-align: left;
+    color: black;
+}
+
+.content{
+    margin-top: 30px;
+    color: black;
+}
+
+li{
+    margin-bottom: 20px;
+    color: black;
+}
+
+
+.add_new{
+    display: flex;
+
+}
+
+
+input{
+    height: 25px;
+}
+
+input[type='text']{
+    color: black;
+    
+}
+
+
+input[type='submit']{
+    font-family: 'Miriam Libre';
+    color: white;
+    background-color: black;
+    margin-left: 10px;
+    height: 29px;
+font-size: 20px;
+    width: 151px;
+    cursor: pointer;
+}
+
+input[type='submit']:hover{
+   background-color: rgb(46, 46, 46); 
+}
 
 
 
