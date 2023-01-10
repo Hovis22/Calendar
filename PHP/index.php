@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../Styles/style.css">
+    <link rel="stylesheet" type="text/css" href="../Styles/style.css">
 
     <title>Only Month</title>
 </head>
@@ -103,7 +103,7 @@
                 <span class="close">&times;</span>
        
             <div class="header">
-                <h2 id="content_header" class="Month_Day">Thuesday-25</h2>
+                <h2 id="content_header" class="Month_Day"></h2>
             </div>
               <div class="content">
                 <ul>
@@ -113,13 +113,18 @@
                <li>Go to Home</li>
                 </ul>
               </div>
+               <form method="GET" action="">
             <div class="add_new">
-                <div class="text-input">
-                <input type="text">
-                </div>
-                <input type="submit" value="SUBMIT">
-            </div>
 
+                <div class="text-input">
+            <input type="hidden" name="Day" id="Day">
+            <input type="hidden" name="Month" id="Month">  
+                <input type="text" name="Name">
+                </div>
+                <input type="submit" name="AddItem" value="Submit">
+              
+            </div>
+             </form>
 
                  </div>
          </div>
@@ -131,8 +136,78 @@
 
     <script src="../JS/calendarStart.js"></script>
     <script src="../JS/modalWindow.js"></script>
+<?php
 
-  
+    class CalendarData{
+
+
+     public function init(){
+        $con = new mysqli("localhost","root","");
+
+
+    $command =  "CREATE DATABASE IF NOT EXISTS calendar";
+    $result =  mysqli_query($con, $command); 
+    
+    $con->close(); 
+   $this->CreateTable();
+
+      }
+
+
+      private function CreateTable(){
+        $con1 = new mysqli("localhost","root","","calendar");
+
+        $command =  "CREATE Table IF NOT EXISTS reminders(
+                 Id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                 Name varchar(30) NOT NULL,
+                 DayNumber int NOT NULL,
+                 Month varchar(50) NOT NULL 
+               )";
+        $result =  mysqli_query($con1, $command);
+       $con1->close();
+
+
+     }
+     
+
+     public function AddNewRem(){
+        $item = $_GET["Name"];
+        $day = $_GET["Day"];
+        $month = $_GET["Month"];
+        $con1 = new mysqli("localhost","root","","calendar");
+   
+      $sql = "INSERT INTO reminders(Name,DayNumber,Month) VALUES ('$item', ' $day ','$month')";
+      $con1->query($sql);
+      $con1->close();
+
+     }
+
+
+
+
+    }
+    
+    $calendar = new CalendarData(); 
+    
+   $calendar->init();
+
+
+
+   if(isset($_GET['AddItem']))
+   {
+     $calendar->AddNewRem();
+   }
+
+
+
+
+
+
+
+
+  ?>
 </body>
 
 </html>
+
+

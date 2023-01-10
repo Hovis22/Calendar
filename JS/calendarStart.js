@@ -19,12 +19,17 @@ class ClandarStart{
           
         });
 
-        var dt = new Date(2023,6);  
+        var dt = new Date(2023,1);  
+        let i;
+        if(dt.getDay()==0){
+             i = 7;
+        }
+        else i = dt.getDay();
+       
 
-        let i = dt.getDay();
 
 
-        let days = -1;
+        let days = 0;
         this.rows.forEach((item)=>{
             i--;   
             if(days>dt.getDate()) return null;
