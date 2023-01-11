@@ -12,7 +12,14 @@ class ClandarStart{
    }
 
 
-    init(){
+   async init(){
+
+    //this.getDataFromDB();
+
+
+
+
+
       this.rows.forEach((item)=>{
             item.textContent='';
             item.style.color='white';
@@ -24,9 +31,8 @@ class ClandarStart{
         if(dt.getDay()==0){
              i = 7;
         }
-        else i = dt.getDay();
-       
-
+        else i = dt.getDay();  
+    
 
 
         let days = 0;
@@ -43,7 +49,25 @@ class ClandarStart{
       
         });
 
+
     }
+
+  async  getDataFromDB(){
+   $.ajax({  
+    type: 'POST',  
+    url: 'get-data.php', 
+    data: {month :this.month,year : 2023},
+    success: function(response) {
+       JSON.parse(response);
+       console.log( JSON.parse(response));
+    }
+});
+
+
+   }
+
+
+
 
 
 }
@@ -52,3 +76,4 @@ class ClandarStart{
 var calendar = new ClandarStart();
 
 calendar.init();    
+calendar.getDataFromDB();

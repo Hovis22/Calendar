@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../Styles/style.css">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <title>Only Month</title>
 </head>
 
@@ -161,7 +161,8 @@
                  Id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
                  Name varchar(30) NOT NULL,
                  DayNumber int NOT NULL,
-                 Month varchar(50) NOT NULL 
+                 Month varchar(50) NOT NULL,
+                 Year varchar(50) NOT NULL 
                )";
         $result =  mysqli_query($con1, $command);
        $con1->close();
@@ -176,7 +177,7 @@
         $month = $_GET["Month"];
         $con1 = new mysqli("localhost","root","","calendar");
    
-      $sql = "INSERT INTO reminders(Name,DayNumber,Month) VALUES ('$item', ' $day ','$month')";
+      $sql = "INSERT INTO reminders(Name,DayNumber,Month,Year) VALUES ('$item', ' $day ','$month',2023)";
       $con1->query($sql);
       $con1->close();
 
