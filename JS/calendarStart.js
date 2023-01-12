@@ -1,27 +1,26 @@
 class ClandarStart{
-   rows
+
    constructor(){
     var today = new Date();
     this.month = today.toLocaleString('en-US', {month: 'long',});    
     this.rows  = document.querySelectorAll("td");
-     
+   
    }
 
    get mnt(){
     return this.month;
    }
 
+   affars(day){
+   return this.daysInfo.filter((x)=>x.DayNumber == day);
+   }
 
-   async init(){
+   async  init(){
 
-    //this.getDataFromDB();
-
-
-
-
+      await this.getDataFromDB();
 
       this.rows.forEach((item)=>{
-            item.textContent='';
+
             item.style.color='white';
           
         });
@@ -41,7 +40,21 @@ class ClandarStart{
             if(days>dt.getDate()) return null;
     
             if(i<=0){
-             item.textContent= dt.getDate();
+           
+
+          
+             if(this.daysInfo.find(({DayNumber}) => DayNumber === (days+1).toString()) !=null){
+   
+      
+               item.insertAdjacentHTML("beforeend",`<label>${dt.getDate()}</label>`);
+               item.insertAdjacentHTML("beforeend",`<div class="remind"><label>Reminder</label></div>`);
+               
+             }
+             else{
+               item.insertAdjacentHTML("beforeend",`<label>${dt.getDate()}</label>`);
+             }
+          
+
              item.style.cursor = "pointer";
              dt.setDate(dt.getDate() + 1);
                  days++;
@@ -53,22 +66,23 @@ class ClandarStart{
     }
 
   async  getDataFromDB(){
-   $.ajax({  
+   let st;
+  await $.ajax({  
     type: 'POST',  
     url: 'get-data.php', 
     data: {month :this.month,year : 2023},
     success: function(response) {
-       JSON.parse(response);
-       console.log( JSON.parse(response));
+
+      st = JSON.parse(response);
+    
+       console.log(JSON.parse(response) );
     }
-});
+   })
 
-
+   this.daysInfo = st;//JSON.parse(response);
    }
 
-
-
-
+  
 
 }
 
@@ -76,4 +90,3 @@ class ClandarStart{
 var calendar = new ClandarStart();
 
 calendar.init();    
-calendar.getDataFromDB();

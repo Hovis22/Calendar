@@ -106,11 +106,8 @@
                 <h2 id="content_header" class="Month_Day"></h2>
             </div>
               <div class="content">
-                <ul>
-               <li>Go to Gym</li>
-               <li>Watch TV</li>
-               <li>Unlock</li>
-               <li>Go to Home</li>
+                <ul id="To-Do-List">
+    
                 </ul>
               </div>
                <form method="GET" action="">
